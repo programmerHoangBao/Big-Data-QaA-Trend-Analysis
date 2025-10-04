@@ -2,3 +2,7 @@
 /data_visualization/dataset
 /data_visualization/raw_data
 /dataset
+/Chatbox-Service/.venv
+/Chatbox-Service/mysite/.env
+/Chatbox-Service/mysite/db.sqlite3
+/Chatbox-Service/mysite/chatbox/retrieval_based
