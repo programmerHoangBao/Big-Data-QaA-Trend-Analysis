@@ -1,5 +1,6 @@
 import os
 import json
+import uuid
 import logging
 from kafka import KafkaProducer, KafkaConsumer
 from kafka.admin import KafkaAdminClient, NewTopic
@@ -64,7 +65,9 @@ class KafkaToHDFSConsumer:
         auto_offset_reset="earliest",
         enable_auto_commit=True,
         group_id="chatbox-hdfs-group",
-        value_deserializer=lambda v: json.loads(v.decode("utf-8"))
+        value_deserializer=lambda v: json.loads(v.decode("utf-8")),
+        session_timeout_ms=30000,       # tăng thời gian timeout
+        heartbeat_interval_ms=10000     # tăng interval
       )
     ensure_kafka_topic_exists(kafka_host, topic)
     self.hdfs_client = InsecureClient(hdfs_host, user=hdfs_user)
@@ -79,9 +82,9 @@ class KafkaToHDFSConsumer:
     for message in self.consumer:
       data = message.value
       timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-      file_name = f"{self.hdfs_path}/chatbox_{timestamp}.json"
+      file_name = f"{self.hdfs_path}/chatbox_{timestamp}_{uuid.uuid4().hex}.json"
 
       # Write data to a JSON file on HDFS.
-      with self.hdfs_client.write(file_name, encoding="utf-8") as writer:
+      with self.hdfs_client.write(file_name, encoding="utf-8", overwrite=True) as writer:
           json.dump(data, writer, ensure_ascii=False, indent=2)
       logging.info(f"Wrote message to HDFS: {file_name}")

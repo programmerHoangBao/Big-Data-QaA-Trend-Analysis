@@ -6,3 +6,5 @@
 /Chatbox-Service/mysite/.env
 /Chatbox-Service/mysite/db.sqlite3
 /Chatbox-Service/mysite/chatbox/retrieval_based
+/.venv
+/tempCodeRunnerFile.py

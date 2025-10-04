@@ -2,6 +2,11 @@ from django.apps import AppConfig
 import threading
 import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.StreamHandler()]
+)
 
 class ChatboxConfig(AppConfig):
   default_auto_field = 'django.db.models.BigAutoField'
