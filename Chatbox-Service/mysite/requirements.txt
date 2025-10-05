@@ -1,0 +1,11 @@
+django
+python-dotenv
+psycopg2-binary
+djangorestframework
+faiss-cpu
+numpy
+sentence-transformers
+transformers
+accelerate
+hdfs
+kafka-python
