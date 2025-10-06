@@ -1,1 +1,3 @@
 pip install -r Chatbox-Service/mysite/requirements.txt
+python Chatbox-Service/mysite/manage.py makemigrations
+python Chatbox-Service/mysite/manage.py migrate

@@ -100,7 +100,9 @@ def main():
 
 
 if __name__ == "__main__":
-    k = 100
-    while (k > 0):
+    index = 0
+    while (True):
+      print(f"Running: {index}")
       main()
-      k -= 1
+      index += 1
+      sleep(1)
