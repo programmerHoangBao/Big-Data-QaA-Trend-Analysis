@@ -8,3 +8,6 @@
 /Chatbox-Service/mysite/chatbox/retrieval_based
 /.venv
 /tempCodeRunnerFile.py
+/Chatbox-Service/mysite/chatbox/__pycache__
+/Chatbox-Service/mysite/chatbox/migrations/__pycache__
+/Chatbox-Service/mysite/mysite/__pycache__
