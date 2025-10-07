@@ -20,15 +20,18 @@
 #### 2.2.2. Add file .env
 
 - Add file .env:
-  ![alt text](image-2.png)
+  <img width="1350" height="767" alt="image-2" src="https://github.com/user-attachments/assets/5fceb873-2639-4ef2-a630-ad14ace0569a" />
+
 - The content of the .env file is as follows:
-  ![alt text](image-9.png)
+  <img width="1094" height="123" alt="image-9" src="https://github.com/user-attachments/assets/b80b2f18-079a-4661-a327-547afd7861cb" />
+
 - **QUESTION_AND_ANSWER_PATH**: Path to the file setup/dataset/Question_Add_Answer.jsonl
 - **CHATBOX_API**: API of 'Chatbox-Service'
 #### 2.2.3. Add file Chatbox-Service/mysite/.env
 
 - Add the .env file to './Chatbox-Service/mysite' with the following content:
-  ![alt text](image-1.png)
+  <img width="713" height="572" alt="image-1" src="https://github.com/user-attachments/assets/44bc7d41-f643-4326-a889-dab1541f6dda" />
+
 - **Part 1: Database Configuration**
   - **DB_NAME**: The name of the database your application connects to. Example: mydb, salesdb, school_db.
   - **DB_USER**: The username used to access the database. Example: root, admin, postgres, app_user.
@@ -54,10 +57,12 @@
 - For safety, you should create a virtual environment (venv) to install the libraries.
   - **Step 1**: Open the terminal in the project directory and run the command 'py -m venv .venv' or 'python -m venv .venv'.
   - **Step 2**: Run the command '.venv\Scripts\activate'
-    ![alt text](image-4.png)
+   <img width="816" height="205" alt="image-4" src="https://github.com/user-attachments/assets/14ce65e9-cafa-44c1-82b3-02125a9844b5" />
+
 - Install the libraries from the requirements.txt file.
   - Run the following command in the project terminal: 'pip install -r requirements.txt'
-    ![alt text](image-5.png)
+   <img width="2560" height="1528" alt="image-5" src="https://github.com/user-attachments/assets/09307168-cb04-4f0f-876d-a15ce250369b" />
+
 
 #### 2.2.5. Config hosts
 
@@ -72,7 +77,8 @@
 - In the project terminal, run the following two commands: <br>
   'python Chatbox-Service/mysite/manage.py makemigrations' <br>
   'python Chatbox-Service/mysite/manage.py migrate'
-  ![alt text](image-6.png)
+  <img width="2560" height="1528" alt="image-6" src="https://github.com/user-attachments/assets/22fe26f2-9d72-435f-b9b0-7fb26bf54ea7" />
+
 
 #### 2.2.7. "Check if the Chatbox-Service is working properly."
 
