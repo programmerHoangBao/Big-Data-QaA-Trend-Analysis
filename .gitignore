@@ -11,3 +11,5 @@
 /Chatbox-Service/mysite/chatbox/__pycache__
 /Chatbox-Service/mysite/chatbox/migrations/__pycache__
 /Chatbox-Service/mysite/mysite/__pycache__
+/setup
+/*.env

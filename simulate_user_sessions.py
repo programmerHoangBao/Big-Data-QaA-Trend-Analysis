@@ -1,16 +1,21 @@
 from time import sleep
 import requests
 import json
+import os
+from dotenv import load_dotenv
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 
-API_BASE = "http://127.0.0.1:8000"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+API_BASE = os.getenv('CHATBOX_API')
 SESSION_API = f"{API_BASE}/create-session/"
 QUESTION_API = f"{API_BASE}/create-question/"
 ANSWER_API = f"{API_BASE}/create-answer/?question_id="
 
-DATA_FILE = r"./dataset/merged_posts.jsonl"
+DATA_FILE = os.getenv('QUESTION_AND_ANSWER_PATH')
 MAX_THREADS = 10
 
 def load_questions():
