@@ -52,6 +52,7 @@ def create_question(session_id, question_text):
 
 
 def create_answer(question_id):
+    
     resp = requests.post(f"{ANSWER_API}{question_id}")
     if resp.status_code == 201:
         return resp.json()["data"]["answer_text"]
@@ -73,11 +74,12 @@ def run_session(session_index, questions):
 
     # Randomly select k_question questions from the file.
     for _ in range(k_question):
-        sleep(0.8)
+        sleep(0.5)
         q_text = random.choice(questions)
         q_id = create_question(session_id, q_text)
         if q_id:
             print(f"[Session {session_index}] | Created Question {q_id}")
+            sleep(0.5)
             answer = create_answer(q_id)
             if answer:
                 print(f"[Session {session_index}] | Got answer for Question {q_id} ({len(answer)} chars)")
@@ -110,4 +112,4 @@ if __name__ == "__main__":
       print(f"Running: {index}")
       main()
       index += 1
-      sleep(1)
+      sleep(5)
