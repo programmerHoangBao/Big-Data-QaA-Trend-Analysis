@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 import threading
 import logging
+from .rabbitMQ_consumer import RabbitMQToHDFSConsumer
 
 logging.basicConfig(
     level=logging.INFO,
@@ -12,17 +13,30 @@ class ChatboxConfig(AppConfig):
   default_auto_field = 'django.db.models.BigAutoField'
   name = 'chatbox'
     
-  def ready(self):
-    """Run Kafka consumer in background when Django starts"""
-    from .kafka_hdfs_pipeline import KafkaToHDFSConsumer
+  # def ready(self):
+  #   """Run Kafka consumer in background when Django starts"""
+  #   from .kafka_hdfs_pipeline import KafkaToHDFSConsumer
 
+  #   def run_consumer():
+  #     try:
+  #       consumer = KafkaToHDFSConsumer()
+  #       consumer.start()
+  #     except Exception as e:
+  #       logging.error(f"Kafka Consumer failed: {e}")
+
+  #   thread = threading.Thread(target=run_consumer, daemon=True)
+  #   thread.start()
+  #   logging.info("Kafka Consumer started in background.")
+  
+  def ready(self):
+    """Run RabbitMQ consumer in background when Django starts"""
     def run_consumer():
       try:
-        consumer = KafkaToHDFSConsumer()
-        consumer.start()
+        consumer = RabbitMQToHDFSConsumer()
+        consumer.start()               
       except Exception as e:
-        logging.error(f"Kafka Consumer failed: {e}")
+        logging.error(f"RabbitMQ Consumer failed: {e}")
 
     thread = threading.Thread(target=run_consumer, daemon=True)
     thread.start()
-    logging.info("Kafka Consumer started in background.")
+    logging.info("RabbitMQ Consumer started in background.")

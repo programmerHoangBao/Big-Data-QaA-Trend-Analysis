@@ -6,6 +6,7 @@ from .models import Session, Question, Answer
 from .serializers import QuestionCreateSerializer
 from chatbox import retriveval_based
 from chatbox.kafka_hdfs_pipeline import KafkaToHDFSProducer
+from chatbox.rabbitMQ_producer import RabbitMQProducer
 
 # Create your views here.
 @api_view(['POST'])
@@ -71,13 +72,22 @@ def create_answer(request):
   )
   
   # Send data to Kafka (automatically pushed to Hadoop via consumer).
-  producer = KafkaToHDFSProducer()
+  # producer = KafkaToHDFSProducer()
+  # producer.send_message({
+  #     "session_id": question.session_id.id,
+  #     "question_id": question.id,
+  #     "question": question.text,
+  #     "answer": answer.text,
+  #     "timestamp": str(answer.create_at)
+  # })
+  
+  producer = RabbitMQProducer()
   producer.send_message({
-      "session_id": question.session_id.id,
-      "question_id": question.id,
-      "question": question.text,
-      "answer": answer.text,
-      "timestamp": str(answer.create_at)
+    "session_id": question.session_id.id,
+    "question_id": question.id,
+    "question": question.text,
+    "answer": answer.text,
+    "timestamp": str(answer.create_at)
   })
 
   return Response({
