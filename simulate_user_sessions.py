@@ -95,7 +95,7 @@ def main():
         return
 
     # Randomize the number of sessions (1–5).
-    count_session = random.randint(1, 3)
+    count_session = random.randint(1, 5)
     print(f"Starting simulation with {count_session} sessions... ({datetime.now()})")
 
     with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
@@ -109,7 +109,10 @@ def main():
 if __name__ == "__main__":
     index = 0
     while (True):
+      if (index > 1000):
+        print(f"End the program at loop iteration {index}.")
+        break
       print(f"Running: {index}")
       main()
       index += 1
-      sleep(5)
+      sleep(10)
